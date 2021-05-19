@@ -1,5 +1,4 @@
 var clicks = 0;
-var clicksPerSecond = 0
 
 // Generator Class
 class Generator {
@@ -20,10 +19,11 @@ const inventory = {
 
 // This is run when the page is opened!
 function init() {
+    const refreshRate = 20 // Per second
     setInterval(function() {
-        clicks = clicks + (clicksPerSecond/20)
+        clicks = clicks + (clicksPerSecond() / refreshRate)
         update()
-    }, 50);
+    }, 1000 / refreshRate);
 }
 
 // This method is ran when the click button is clicked.
@@ -35,7 +35,7 @@ function clicker() {
 // This method is used to update the UI visually and all its values.
 function update() {
     document.getElementById("clickNum").innerHTML = clicks.toFixed(0);
-    document.getElementById("cps").innerHTML = clicksPerSecond;
+    document.getElementById("cps").innerHTML = clicksPerSecond();
     document.getElementById("autoClickerCount").innerHTML = inventory.autoClicker;
     document.getElementById("autoClickerPrice").innerHTML = price(autoClicker).toFixed(0);
 }
@@ -45,7 +45,6 @@ function purchaseAutoClicker() {
     if (clicks >= price(autoClicker)){
         clicks = clicks - price(autoClicker);
         inventory.autoClicker++;
-        clicksPerSecond = inventory.autoClicker * autoClicker.power;
     }
     update();
 }
@@ -53,6 +52,22 @@ function purchaseAutoClicker() {
 // Returns a number which is the price to purchase a generator
 function price(generator) { 
     return Math.pow(generator.price, 1 + (0.1 * inventory.autoClicker))
+}
+
+function clicksPerSecond(){
+    return inventory.autoClicker * autoClicker.power;
+}
+
+function save() {
+    window.localStorage.clear();
+    window.localStorage.setItem('clicks', clicks)
+    window.localStorage.setItem('autoClickers', inventory.autoClicker)
+}
+
+function load(){
+    clicks = parseInt(window.localStorage['clicks']);
+    inventory.autoClicker = parseInt(window.localStorage['autoClickers']);
+    update();
 }
 
 init();
