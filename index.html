@@ -8,11 +8,12 @@
         <!-- <link rel="stylesheet" href="css/styles.css?v=1.0"> -->
     </head>
     <body>
-        <h1>Clicks: </h1>
-        <h2 id="clickNum">0</h2>
-        <h3>Clicks per second:<span id="cps">0</span></h3>
+        <h1>Idle Game: </h1>
+        <p id="clickNum">0</p>
+        <p>Clicks per second:<span id="cps">0</span></p>
         <button onClick="clicker()">Click me</button>
-        <button onClick="purchaseAutoClicker()">Auto Clicker: 10 Clicks</button>
+        <h2>Auto Clickers: <span id="autoClickerCount"></span></h2>
+        <button onClick="purchaseAutoClicker()">Auto Clicker: <span id="autoClickerPrice">0</span> Clicks</button>
         <script src="scripts.js"> </script>
     </body>
 </html>
