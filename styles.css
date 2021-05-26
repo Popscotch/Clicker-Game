@@ -1,0 +1,27 @@
+html {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1 {
+    text-align: center;
+}
+
+.clicker {
+    font-size: 128px;
+    display: block;
+    margin: auto;
+}
+
+.clicks {
+    text-align: center;
+}
+
+.clicksPerSecond {
+    text-align: center;
+}
+
+.generators {
+    /* display: block; */
+    /* margin: auto; */
+    text-align: center;
+}
